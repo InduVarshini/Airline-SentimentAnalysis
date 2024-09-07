@@ -14,42 +14,44 @@
     <!-- Inline CSS for styling -->
     <style>
         body {
-            font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 5px;
             background-color: #f5f5f5;
             margin: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;
         }
 
         h1 {
-            font-size: 20px; /* Smaller font size for responsiveness */
-            margin-bottom: 10px; /* Adjusted margin */
+            font-size: 20px;
+            margin-bottom: 10px;
             text-align: center;
         }
 
+        /* Move visualization closer to the buttons */
         #vizContainer {
             width: 100%;
-            max-width: 1200px; /* Limit the maximum width of the visualization */
+            max-width: 1200px;
             height: 70vh; /* Dynamic height for better fit */
-            margin-top: 10px; /* Move viz closer to buttons */
+            margin-top: 0px; /* Ensure no extra space above */
+            padding: 0;
         }
 
         /* Container to align buttons horizontally */
         .button-container {
             display: flex;
             gap: 10px; /* Space between buttons */
-            margin-bottom: 10px; /* Reduced margin */
+            margin-bottom: 5px; /* Adjust the margin */
         }
 
         button {
-            background-color: #0039b3; /* Blue background */
-            color: white; /* White text */
+            background-color: #0039b3;
+            color: white;
             border: none;
-            padding: 6px 12px; /* Smaller padding */
-            font-size: 14px; /* Smaller font size */
+            padding: 6px 12px;
+            font-size: 14px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
@@ -57,39 +59,39 @@
         }
 
         button:hover {
-            background-color: #004080; /* Darker blue on hover */
+            background-color: #004080;
             transform: scale(1.05);
         }
 
         button:active {
-            background-color: #032369; /* Even darker blue when clicked */
+            background-color: #032369;
             transform: scale(0.98);
         }
 
         /* Media queries for responsiveness */
         @media (max-width: 768px) {
             h1 {
-                font-size: 18px; /* Smaller title on tablets */
+                font-size: 18px;
             }
             #vizContainer {
                 height: 60vh; /* Adjust height for tablets */
             }
             button {
-                font-size: 12px; /* Smaller button text */
-                padding: 5px 10px; /* Smaller button padding */
+                font-size: 12px;
+                padding: 5px 10px;
             }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 16px; /* Smaller title on mobile phones */
+                font-size: 16px;
             }
             #vizContainer {
                 height: 50vh; /* Adjust height for phones */
             }
             button {
-                font-size: 10px; /* Smaller button text */
-                padding: 4px 8px; /* Smaller button padding */
+                font-size: 10px;
+                padding: 4px 8px;
             }
         }
     </style>
