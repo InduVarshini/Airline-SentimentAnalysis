@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Link to favicon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon"> <!-- Updated path to favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
     <!-- Inline CSS for styling -->
     <style>
@@ -25,23 +25,23 @@
         }
 
         h1 {
-            font-size: 24px; /* Smaller font size */
-            margin-bottom: 5px; /* Reduced margin */
+            font-size: 20px; /* Smaller font size for responsiveness */
+            margin-bottom: 10px; /* Adjusted margin */
             text-align: center;
         }
 
         #vizContainer {
             width: 100%;
-            max-width: 1400px; /* Limit the maximum width of the visualization */
-            height:2vh; /* Adjust height to fit better */
-            margin-bottom: 20px;
+            max-width: 1200px; /* Limit the maximum width of the visualization */
+            height: 70vh; /* Dynamic height for better fit */
+            margin-top: 10px; /* Move viz closer to buttons */
         }
 
         /* Container to align buttons horizontally */
         .button-container {
             display: flex;
             gap: 10px; /* Space between buttons */
-            margin-bottom: 1px;
+            margin-bottom: 10px; /* Reduced margin */
         }
 
         button {
@@ -53,17 +53,44 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
-            font-family: 'Montserrat', sans-serif; /* Ensure Montserrat font for buttons */
+            font-family: 'Montserrat', sans-serif;
         }
 
         button:hover {
             background-color: #004080; /* Darker blue on hover */
-            transform: scale(1.05); /* Slightly larger on hover */
+            transform: scale(1.05);
         }
 
         button:active {
             background-color: #032369; /* Even darker blue when clicked */
-            transform: scale(0.98); /* Slightly smaller when clicked */
+            transform: scale(0.98);
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 18px; /* Smaller title on tablets */
+            }
+            #vizContainer {
+                height: 60vh; /* Adjust height for tablets */
+            }
+            button {
+                font-size: 12px; /* Smaller button text */
+                padding: 5px 10px; /* Smaller button padding */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 16px; /* Smaller title on mobile phones */
+            }
+            #vizContainer {
+                height: 50vh; /* Adjust height for phones */
+            }
+            button {
+                font-size: 10px; /* Smaller button text */
+                padding: 4px 8px; /* Smaller button padding */
+            }
         }
     </style>
 
