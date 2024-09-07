@@ -28,17 +28,21 @@
             margin-bottom: 20px;
         }
 
+        /* Container to align buttons horizontally */
+        .button-container {
+            display: flex;
+            gap: 10px; /* Space between buttons */
+        }
+
         button {
             background-color: #007bff; /* Blue background */
             color: white; /* White text */
             border: none;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 8px 16px; /* Smaller padding */
+            font-size: 14px; /* Smaller font size */
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
-            margin: 5px;
-            font-family: 'Montserrat', sans-serif; /* Use Montserrat font for buttons */
         }
 
         button:hover {
@@ -58,8 +62,11 @@
 <body>
     <h1>Analyzing and Visualizing Airline Customer Sentiment and Ratings</h1>
 
-    <button id="exportPDF">Generate PDF</button>
-    <button id="exportImage">Generate Image</button>
+    <!-- Container for buttons to align them horizontally -->
+    <div class="button-container">
+        <button id="exportPDF">Generate PDF</button>
+        <button id="exportImage">Generate Image</button>
+    </div>
 
     <div id="vizContainer"></div>
 </body>
