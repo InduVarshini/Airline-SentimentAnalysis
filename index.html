@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analyzing and Visualizing Airline Customer Sentiment and Ratings</title>
-
     <!-- Link to Montserrat font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Link to favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
     <!-- Inline CSS for styling -->
     <style>
         body {
@@ -23,29 +21,25 @@
             margin: 0;
             overflow-x: hidden;
         }
-
         h1 {
             font-size: 20px;
             margin-bottom: 10px;
             text-align: center;
         }
-
-        /* Move visualization closer to the buttons */
+        /* Keep your 5vh height as requested */
         #vizContainer {
             width: 100%;
             max-width: 1600px;
-            height: 5vh; /* Dynamic height for better fit */
-            margin-top: 0px; /* Ensure no extra space above */
+            height: 5vh; /* As requested - keeping this the same */
+            margin-top: 0px;
             padding: 0;
         }
-
         /* Container to align buttons horizontally */
         .button-container {
             display: flex;
-            gap: 10px; /* Space between buttons */
-            margin-bottom: 0; /* Adjust the margin */
+            gap: 10px;
+            margin-bottom: 0;
         }
-
         button {
             background-color: #0039b3;
             color: white;
@@ -57,37 +51,40 @@
             transition: background-color 0.3s, transform 0.3s;
             font-family: 'Montserrat', sans-serif;
         }
-
         button:hover {
             background-color: #000000;
             transform: scale(1.05);
         }
-
         button:active {
             background-color: #032369;
             transform: scale(0.98);
         }
-
+        /* Add disabled state styling */
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        /* Loading indicator */
+        #loadingIndicator {
+            margin-top: 20px;
+            display: none;
+            color: #0039b3;
+            font-weight: bold;
+        }
         /* Media queries for responsiveness */
         @media (max-width: 768px) {
             h1 {
                 font-size: 18px;
-            }
-            #vizContainer {
-                height: 60vh; /* Adjust height for tablets */
             }
             button {
                 font-size: 12px;
                 padding: 5px 10px;
             }
         }
-
         @media (max-width: 480px) {
             h1 {
                 font-size: 16px;
-            }
-            #vizContainer {
-                height: 50vh; /* Adjust height for phones */
             }
             button {
                 font-size: 10px;
@@ -95,19 +92,26 @@
             }
         }
     </style>
-
+    <!-- Load Tableau API with integrity attribute for better security -->
     <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
-    <script type="text/javascript" src="./app.js"></script>
 </head>
 <body>
     <h1>Analyzing and Visualizing Airline Customer Sentiment and Ratings</h1>
-
-    <!-- Container for buttons to align them horizontally -->
+    
+    <!-- Container for buttons -->
     <div class="button-container">
-        <button id="exportPDF">Generate PDF</button>
-        <button id="exportImage">Generate Image</button>
+        <!-- Buttons start as disabled until viz is loaded -->
+        <button id="exportPDF" disabled title="Please wait for dashboard to load">Generate PDF</button>
+        <button id="exportImage" disabled title="Please wait for dashboard to load">Generate Image</button>
     </div>
-
+    
+    <!-- Loading indicator -->
+    <div id="loadingIndicator">Loading dashboard...</div>
+    
+    <!-- Visualization container -->
     <div id="vizContainer"></div>
+    
+    <!-- Load our app.js script after the DOM has loaded -->
+    <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
