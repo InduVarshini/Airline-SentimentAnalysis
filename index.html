@@ -6,7 +6,6 @@
     <title>Analyzing and Visualizing Airline Customer Sentiment and Ratings</title>
     <!-- Link to Montserrat font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
     <!-- Link to favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!-- Inline CSS for styling -->
@@ -26,19 +25,19 @@
             margin-bottom: 10px;
             text-align: center;
         }
-        /* Move visualization closer to the buttons /
+        /* Move visualization closer to the buttons */
         #vizContainer {
             width: 100%;
             max-width: 1600px;
-            height: 5vh; / Dynamic height for better fit /
-            margin-top: 0px; / Ensure no extra space above /
+            height: 85vh; /* Changed from 5vh to 85vh for proper display */
+            margin-top: 0px; /* Ensure no extra space above */
             padding: 0;
         }
-        / Container to align buttons horizontally /
+        /* Container to align buttons horizontally */
         .button-container {
             display: flex;
-            gap: 10px; / Space between buttons /
-            margin-bottom: 0; / Adjust the margin /
+            gap: 10px; /* Space between buttons */
+            margin-bottom: 10px; /* Adjust the margin */
         }
         button {
             background-color: #0039b3;
@@ -59,13 +58,13 @@
             background-color: #032369;
             transform: scale(0.98);
         }
-        / Media queries for responsiveness /
+        /* Media queries for responsiveness */
         @media (max-width: 768px) {
             h1 {
                 font-size: 18px;
             }
             #vizContainer {
-                height: 60vh; / Adjust height for tablets /
+                height: 80vh; /* Adjust height for tablets */
             }
             button {
                 font-size: 12px;
@@ -77,7 +76,7 @@
                 font-size: 16px;
             }
             #vizContainer {
-                height: 50vh; / Adjust height for phones */
+                height: 75vh; /* Adjust height for phones */
             }
             button {
                 font-size: 10px;
