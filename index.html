@@ -30,15 +30,20 @@
         #vizContainer {
             width: 100%;
             max-width: 1600px;
-            height: 85vh; /* Changed from 5vh to 85vh for proper display */
-            margin-top: 0px;
+            height: 85vh;
+            margin: 0 auto; /* Center horizontally */
             padding: 0;
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
         }
         /* Container to align buttons horizontally */
         .button-container {
             display: flex;
             gap: 10px;
             margin-bottom: 10px;
+            justify-content: center; /* Center buttons */
+            width: 100%;
         }
         button {
             background-color: #0039b3;
