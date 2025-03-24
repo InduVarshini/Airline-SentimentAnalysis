@@ -24,6 +24,7 @@ if (!vizContainer) {
 const options = {
     hideTabs: true,
     hideToolbar: false,
+    device: "desktop",
     onFirstInteractive: function() {
         debug('Dashboard is now interactive');
         vizLoaded = true;
