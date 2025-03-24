@@ -26,11 +26,11 @@
             margin-bottom: 10px;
             text-align: center;
         }
-        /* Keep your 5vh height as requested */
+        /* Update the vizContainer height to fix vertical display */
         #vizContainer {
             width: 100%;
             max-width: 1600px;
-            height: 5vh; /* As requested - keeping this the same */
+            height: 85vh; /* Changed from 5vh to 85vh for proper display */
             margin-top: 0px;
             padding: 0;
         }
@@ -38,7 +38,7 @@
         .button-container {
             display: flex;
             gap: 10px;
-            margin-bottom: 0;
+            margin-bottom: 10px;
         }
         button {
             background-color: #0039b3;
@@ -77,6 +77,9 @@
             h1 {
                 font-size: 18px;
             }
+            #vizContainer {
+                height: 80vh;
+            }
             button {
                 font-size: 12px;
                 padding: 5px 10px;
@@ -85,6 +88,9 @@
         @media (max-width: 480px) {
             h1 {
                 font-size: 16px;
+            }
+            #vizContainer {
+                height: 75vh;
             }
             button {
                 font-size: 10px;
