@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analyzing and Visualizing Airline Customer Sentiment and Ratings</title>
-    <!-- Link to Montserrat font from Google Font -->
+    <!-- Link to Montserrat font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <!-- Link to favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!-- Inline CSS for styling -->
@@ -26,19 +26,19 @@
             margin-bottom: 10px;
             text-align: center;
         }
-        /* Update the vizContainer height to fix vertical display */
+        /* Move visualization closer to the buttons /
         #vizContainer {
             width: 100%;
             max-width: 1600px;
-            height: 85vh; /* Changed from 5vh to 85vh for proper display */
-            margin-top: 0px;
+            height: 5vh; / Dynamic height for better fit /
+            margin-top: 0px; / Ensure no extra space above /
             padding: 0;
         }
-        /* Container to align buttons horizontally */
+        / Container to align buttons horizontally /
         .button-container {
             display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 10px; / Space between buttons /
+            margin-bottom: 0; / Adjust the margin /
         }
         button {
             background-color: #0039b3;
@@ -59,26 +59,13 @@
             background-color: #032369;
             transform: scale(0.98);
         }
-        /* Add disabled state styling */
-        button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-        /* Loading indicator */
-        #loadingIndicator {
-            margin-top: 20px;
-            display: none;
-            color: #0039b3;
-            font-weight: bold;
-        }
-        /* Media queries for responsiveness */
+        / Media queries for responsiveness /
         @media (max-width: 768px) {
             h1 {
                 font-size: 18px;
             }
             #vizContainer {
-                height: 80vh;
+                height: 60vh; / Adjust height for tablets /
             }
             button {
                 font-size: 12px;
@@ -90,7 +77,7 @@
                 font-size: 16px;
             }
             #vizContainer {
-                height: 75vh;
+                height: 50vh; / Adjust height for phones */
             }
             button {
                 font-size: 10px;
@@ -98,26 +85,16 @@
             }
         }
     </style>
-    <!-- Load Tableau API with integrity attribute for better security -->
     <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <script type="text/javascript" src="./app.js"></script>
 </head>
 <body>
     <h1>Analyzing and Visualizing Airline Customer Sentiment and Ratings</h1>
-    
-    <!-- Container for buttons -->
+    <!-- Container for buttons to align them horizontally -->
     <div class="button-container">
-        <!-- Buttons start as disabled until viz is loaded -->
-        <button id="exportPDF" disabled title="Please wait for dashboard to load">Generate PDF</button>
-        <button id="exportImage" disabled title="Please wait for dashboard to load">Generate Image</button>
+        <button id="exportPDF">Generate PDF</button>
+        <button id="exportImage">Generate Image</button>
     </div>
-    
-    <!-- Loading indicator -->
-    <div id="loadingIndicator">Loading dashboard...</div>
-    
-    <!-- Visualization container -->
     <div id="vizContainer"></div>
-    
-    <!-- Load our app.js script after the DOM has loaded -->
-    <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
