@@ -1,4 +1,4 @@
-// Debugging helper - shows messages in console
+// Debugging helper - to show messages in browser console
 function debug(message) {
     console.log(`[Tableau Dashboard] ${message}`);
 }
