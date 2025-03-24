@@ -20,13 +20,10 @@ if (!vizContainer) {
     debug('Viz container found');
 }
 
-// Tableau options with improved event handling and proper sizing
+// Tableau options without width/height (handled in HTML/CSS)
 const options = {
     hideTabs: true,
     hideToolbar: false,
-    // Set responsive width and height to properly fill the container
-    width: '100%',
-    height: '100%',
     onFirstInteractive: function() {
         debug('Dashboard is now interactive');
         vizLoaded = true;
@@ -39,43 +36,43 @@ function initViz() {
     try {
         debug('Initializing visualization...');
         
-        // Make sure Tableau API is available
+        // Ensure Tableau API is available
         if (typeof tableau === 'undefined' || !tableau.Viz) {
             debug('ERROR: Tableau API not loaded');
-            
-            // Try to reload the API
-            const script = document.createElement('script');
-            script.src = 'https://public.tableau.com/javascripts/api/tableau-2.min.js';
-            script.onload = function() {
-                debug('Tableau API loaded manually');
-                initVizAfterApiLoad();
-            };
-            script.onerror = function() {
-                debug('Failed to load Tableau API manually');
-            };
-            document.head.appendChild(script);
+            loadTableauAPI();
             return;
         }
-        
-        initVizAfterApiLoad();
+
+        createViz();
     } catch (error) {
         debug(`ERROR initializing viz: ${error.message}`);
     }
 }
 
-function initVizAfterApiLoad() {
+// Load Tableau API if not available
+function loadTableauAPI() {
+    const script = document.createElement('script');
+    script.src = 'https://public.tableau.com/javascripts/api/tableau-2.min.js';
+    script.onload = function() {
+        debug('Tableau API loaded manually');
+        createViz();
+    };
+    script.onerror = function() {
+        debug('Failed to load Tableau API manually');
+    };
+    document.head.appendChild(script);
+}
+
+// Create Tableau viz
+function createViz() {
     try {
-        // Create the viz
         viz = new tableau.Viz(vizContainer, url, options);
-        
-        // Add listeners for export buttons right away, but they'll check if viz is loaded
         setupExportButtons();
         
         // Listen for errors
         viz.addEventListener(tableau.TableauEventName.ERROR, function(errorEvent) {
             debug(`Tableau error: ${errorEvent.getErrorMessage()}`);
         });
-        
     } catch (error) {
         debug(`ERROR creating viz: ${error.message}`);
     }
@@ -85,80 +82,67 @@ function initVizAfterApiLoad() {
 function setupExportButtons() {
     const exportPDF = document.getElementById('exportPDF');
     const exportImage = document.getElementById('exportImage');
-    
+
     if (!exportPDF || !exportImage) {
         debug('Export buttons not found in DOM');
         return;
     }
-    
+
     debug('Adding event listeners to export buttons');
-    
-    // PDF export function
+
     exportPDF.addEventListener('click', function(e) {
-        debug('PDF button clicked');
-        e.preventDefault(); // Prevent any default action
-        
-        if (!viz || !vizLoaded) {
-            debug('ERROR: Cannot export PDF - viz not ready');
-            alert('Dashboard is still loading. Please try again in a moment.');
-            return;
-        }
-        
-        try {
-            debug('Opening PDF export dialog');
-            viz.showExportPDFDialog();
-        } catch (error) {
-            debug(`ERROR exporting PDF: ${error.message}`);
-            alert('Could not generate PDF. Please check if popups are blocked.');
-        }
+        e.preventDefault();
+        exportDashboard('PDF');
     });
-    
-    // Image export function
+
     exportImage.addEventListener('click', function(e) {
-        debug('Image button clicked');
-        e.preventDefault(); // Prevent any default action
-        
-        if (!viz || !vizLoaded) {
-            debug('ERROR: Cannot export image - viz not ready');
-            alert('Dashboard is still loading. Please try again in a moment.');
-            return;
-        }
-        
-        try {
-            debug('Opening image export dialog');
-            viz.showExportImageDialog();
-        } catch (error) {
-            debug(`ERROR exporting image: ${error.message}`);
-            alert('Could not generate image. Please check if popups are blocked.');
-        }
+        e.preventDefault();
+        exportDashboard('Image');
     });
-    
+
     debug('Export buttons set up');
 }
 
-// Enable the buttons once viz is interactive
+// Handle dashboard exports
+function exportDashboard(type) {
+    if (!viz || !vizLoaded) {
+        debug(`ERROR: Cannot export ${type} - viz not ready`);
+        alert('Dashboard is still loading. Please try again in a moment.');
+        return;
+    }
+
+    try {
+        debug(`Opening ${type} export dialog`);
+        if (type === 'PDF') {
+            viz.showExportPDFDialog();
+        } else if (type === 'Image') {
+            viz.showExportImageDialog();
+        }
+    } catch (error) {
+        debug(`ERROR exporting ${type}: ${error.message}`);
+        alert(`Could not generate ${type}. Please check if popups are blocked.`);
+    }
+}
+
+// Enable export buttons once viz is interactive
 function enableExportButtons() {
     const exportPDF = document.getElementById('exportPDF');
     const exportImage = document.getElementById('exportImage');
-    
+
     if (exportPDF) {
         exportPDF.disabled = false;
-        exportPDF.title = 'Generate PDF report';
     }
-    
+
     if (exportImage) {
         exportImage.disabled = false;
-        exportImage.title = 'Generate image of dashboard';
     }
-    
+
     debug('Export buttons enabled');
 }
 
 // Initialize when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     debug('DOM loaded, starting initialization');
-    
-    // Small delay to ensure everything is ready
     setTimeout(initViz, 500);
 });
 
