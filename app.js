@@ -20,10 +20,13 @@ if (!vizContainer) {
     debug('Viz container found');
 }
 
-// Tableau options with improved event handling
+// Tableau options with improved event handling and proper sizing
 const options = {
     hideTabs: true,
     hideToolbar: false,
+    // Set responsive width and height to properly fill the container
+    width: '100%',
+    height: '100%',
     onFirstInteractive: function() {
         debug('Dashboard is now interactive');
         vizLoaded = true;
